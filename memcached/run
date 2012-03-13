@@ -1,0 +1,12 @@
+#!/bin/sh
+exec 2>&1
+exec /usr/bin/memcached -vv -p 11211 -u nobody -c 1024 -m 128
+
+# 256 MB: 	268435456
+# 512 MB: 	536870912
+# 1GB:		1073741824
+#
+MEMLIMIT="268435456"
+
+exec 2>&1
+exec /command/setuidgid _memcached /command/softlimit -a $MEMLIMIT /usr/bin/memcached -vv -p 11211 -c 1024 -m 128

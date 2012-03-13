@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+MEMORY="64000000" 
+
+# Use shared memory for lighttpd
+#
+# mkdir -p /dev/shm/lighttpd/compress 2> /dev/null
+# chown -R lighttpd:lighttpd /dev/shm/lighttpd
+
+exec 2>&1
+exec /command/softlimit -m $MEMORY /usr/sbin/lighttpd -D -f /etc/lighttpd/lighttpd.conf

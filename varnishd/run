@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# Daemontools init for varnishd
+#
+exec 2>&1
+exec  /usr/local/sbin/varnishd -a :81 \
+    -T localhost:6082 \
+    -f /etc/vpmc.vcl \
+    -h classic \
+    -s malloc,256M \
+    -F

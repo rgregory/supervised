@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+#
+
+# Sanity checks
+#
+mkdir -p /etc/redis/data 2> /dev/null
+chown -R _redis /etc/redis/data 2> /dev/null
+chown -R _redis /etc/redis/log 2> /dev/null
+
+# Set MEM_LIMIT higher than Redis' configured
+# limit
+#
+MEMLIMIT="3147483648"
+
+# Redis locations
+#
+REDIS="/usr/local/bin/redis-server"
+REDIS_CONF="/etc/redis/redis.conf"
+
+# Go
+#
+exec 2>&1
+exec /command/setuidgid _redis /command/softlimit -m $MEMLIMIT $REDIS $REDIS_CONF
+echo "Restart event" | mail -s "[Redis Master Restarted]" root

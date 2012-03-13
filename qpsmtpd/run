@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# Ensure qpsmtpd is always running and sane
+#
+BUCKET="/s3/mail/"
+[ -d $BUCKET ] || mkdir -p $BUCKET 2> /dev/null
+chown -R _mailer $BUCKET 2> /dev/null
+
+# Config
+#
+MEMLIMIT="3147483648"
+
+# Locations
+#
+QPDIR="/usr/local/bin/qpsmtpd"
+QPBIN="/usr/local/bin/qpsmtpd/qpsmtpd-forkserver"
+QPORT="25"
+QCON="50"
+
+# Go
+#
+exec 2>&1
+cd $QPDIR || exit 1
+exec /command/softlimit -c 1 -m $MEMLIMIT $QPBIN -p $QPORT -c $QCON
+
