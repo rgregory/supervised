@@ -5,7 +5,7 @@
 MEMLIMIT="4294967296"
 
 exec 2>&1
-exec /command/softlimit -m $MEMLIMIT /usr/local/sbin/varnishd -a :81 \
+exec /command/softlimit -m $MEMLIMIT /usr/local/sbin/varnishd -a :80 \
     -T localhost:6082 \
     -f /etc/vpmc.vcl \
     -h classic \
