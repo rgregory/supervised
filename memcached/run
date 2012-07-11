@@ -1,6 +1,5 @@
 #!/bin/sh
 exec 2>&1
-exec /usr/bin/memcached -vv -p 11211 -u nobody -c 1024 -m 128
 
 # 256 MB: 	268435456
 # 512 MB: 	536870912
