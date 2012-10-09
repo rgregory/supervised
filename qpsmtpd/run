@@ -21,5 +21,5 @@ QCON="50"
 #
 exec 2>&1
 cd $QPDIR || exit 1
-exec /command/softlimit -c 1 -m $MEMLIMIT $QPBIN -p $QPORT -c $QCON
+exec /command/softlimit -c 1 -d $MEMLIMIT $QPBIN -p $QPORT -c $QCON
 

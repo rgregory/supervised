@@ -8,4 +8,4 @@ MEMORY="64000000"
 # chown -R lighttpd:lighttpd /dev/shm/lighttpd
 
 exec 2>&1
-exec /command/softlimit -m $MEMORY /usr/sbin/lighttpd -D -f /etc/lighttpd/lighttpd.conf
+exec /command/softlimit -d $MEMORY /usr/sbin/lighttpd -D -f /etc/lighttpd/lighttpd.conf

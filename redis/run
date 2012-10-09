@@ -21,5 +21,5 @@ REDIS_CONF="/etc/redis/redis.conf"
 # Go
 #
 exec 2>&1
-exec /command/setuidgid _redis /command/softlimit -m $MEMLIMIT $REDIS $REDIS_CONF
+exec /command/setuidgid _redis /command/softlimit -d $MEMLIMIT $REDIS $REDIS_CONF
 echo "Restart event" | mail -s "[Redis Master Restarted]" root

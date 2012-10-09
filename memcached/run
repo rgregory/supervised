@@ -8,4 +8,4 @@ exec 2>&1
 MEMLIMIT="268435456"
 
 exec 2>&1
-exec /command/setuidgid _memcached /command/softlimit -a $MEMLIMIT /usr/bin/memcached -vv -p 11211 -c 1024 -m 128
+exec /command/setuidgid _memcached /command/softlimit -d $MEMLIMIT /usr/bin/memcached -vv -p 11211 -c 1024 -m 128

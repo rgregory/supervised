@@ -5,9 +5,19 @@
 MEMLIMIT="4294967296"
 
 exec 2>&1
-exec /command/softlimit -m $MEMLIMIT /usr/local/sbin/varnishd -a :80 \
-    -T localhost:6082 \
+exec /command/softlimit -d $MEMLIMIT /usr/local/sbin/varnishd -a :80 \
+    -T 127.0.0.1:6800 \
     -f /etc/vpmc.vcl \
     -h classic \
-    -s malloc,1024M \
+    -s malloc,2G \
+    -P /tmp/varnishd.pid \
+    -t 300 \
+    -u _varnish \
+    -g _varnish \
+    -p thread_pool_add_delay=2 \
+    -p thread_pools=<Number of CPU cores> \
+    -p thread_pool_min=200 \
+    -p thread_pool_max=4000 \
+    -p session_linger=50 \
+    -p sess_workspace=262144 \
     -F
