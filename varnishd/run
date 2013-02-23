@@ -1,23 +1,23 @@
 #!/bin/sh
 #
 # Daemontools init for varnishd
-# 
-MEMLIMIT="4294967296"
+#
+MEMLIMIT="1273741824"
 
 exec 2>&1
-exec /command/softlimit -d $MEMLIMIT /usr/local/sbin/varnishd -a :80 \
-    -T 127.0.0.1:6800 \
-    -f /etc/vpmc.vcl \
-    -h classic \
-    -s malloc,2G \
-    -P /tmp/varnishd.pid \
-    -t 300 \
-    -u _varnish \
-    -g _varnish \
-    -p thread_pool_add_delay=2 \
-    -p thread_pools=<Number of CPU cores> \
-    -p thread_pool_min=200 \
-    -p thread_pool_max=4000 \
-    -p session_linger=50 \
-    -p sess_workspace=262144 \
-    -F
+exec /command/softlimit -c 1 -d $MEMLIMIT \
+  /usr/sbin/varnishd -a :80 \
+  -T 127.0.0.1:6800 \
+  -f /etc/varnish/vpmc.vcl \
+  -h classic \
+  -s malloc,1G \
+  -t 1200 \
+  -u varnish \
+  -g varnish \
+  -p thread_pool_add_delay=2 \
+  -p thread_pools=2 \
+  -p thread_pool_min=200 \
+  -p thread_pool_max=4000 \
+  -p session_linger=50 \
+  -p sess_workspace=262144 \
+  -F
