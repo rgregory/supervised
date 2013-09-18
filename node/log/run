@@ -1,0 +1,4 @@
+#!/bin/sh
+#
+exec setuidgid _redis multilog t ./main
+

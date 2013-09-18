@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+#
+
+MEMLIMIT="12589934592"
+COMMAND="node `pwd`.js"
+
+# Go
+#
+exec 2>&1
+exec /command/setuidgid _node /command/softlimit -d $MEMLIMIT 
+echo "Restart event" | mail -s "[Node Restarted]" root

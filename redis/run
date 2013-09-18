@@ -11,12 +11,12 @@ chown -R _redis /etc/redis/log 2> /dev/null
 # Set MEM_LIMIT higher than Redis' configured
 # limit
 #
-MEMLIMIT="3147483648"
+MEMLIMIT="12589934592"
 
 # Redis locations
 #
 REDIS="/usr/local/bin/redis-server"
-REDIS_CONF="/etc/redis/redis.conf"
+REDIS_CONF="/usr/local/etc/redis.conf"
 
 # Go
 #
