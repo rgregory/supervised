@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+exec 2>&1
+exec /command/softlimit -m 536870912 /usr/local/bin/uwsgi --socket /tmp/photomap.sock \
+   --chmod-socket=666 \
+   --module mysite.wsgi \
+   --master \
+   --processes 10 \
+   --vacuum \
+   --max-requests=5000
